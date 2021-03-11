@@ -1,3 +1,6 @@
+
+// TODO Fix bug in global script location
+
 #include <iostream>
 #include <vector>
 
@@ -25,7 +28,7 @@ int main(int argc, char **argv) {
 
 	// Initialize a template vector and push an element
 	std::vector<Template*> temp;
-	push_to_template_list(&temp, "c-lang", "scripts/new_project_c.sh");
+	push_to_template_list(&temp, "c-lang", "/c/Users/Documents/Projects/C_C++/new_terminal_cli/scripts/new_project_c.sh");
 
 	// Error handling for bad arguments input
 	if (argc == 1) {
