@@ -8,8 +8,12 @@ rm -rf $2
 
 # Make file structure
 mkdir $2
+echo "Created directory $2"
+echo
 cd $2
 
+echo "Starting templating..."
+echo
 # Write template to main.c
 echo "#include <stdio.h>
 #include <stdlib.h>
@@ -20,6 +24,7 @@ int main(int argc, char **argv) {
 	return 0;
 }
 " > main.c
+echo "Added main.c"
 
 # Write template to Makefile
 echo "CC = gcc
@@ -68,6 +73,10 @@ clean:
 
 .PHONY: clean
 " > Makefile
+echo "Added Makefile"
+echo
 
 # Make the build folder
 mkdir build
+
+echo "Finished templating!"
