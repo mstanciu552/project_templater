@@ -5,7 +5,6 @@
 
 #include <iostream>
 #include <vector>
-#include <string.h>
 
 // Struct to define the Template type 
 struct Template {
@@ -32,6 +31,10 @@ int main(int argc, char **argv) {
 	// Initialize a template vector and push an element
 	std::vector<Template*> temp;
 	push_to_template_list(&temp, "c-lang", "new_project_c.sh");
+	push_to_template_list(&temp, "cpp-lang", "new_project_cpp.sh");
+	push_to_template_list(&temp, "express", "new_project_expressjs.sh");
+	push_to_template_list(&temp, "p5", "new_project_p5js.sh");
+
 
 	// Error handling for bad arguments input
 	if (argc == 1) {
@@ -58,7 +61,7 @@ int main(int argc, char **argv) {
 	// Get the path to the appropriate script and end the program if no match is found
 	std::string path = match_input_to_template(temp, argv[3]);
 	if (path == "" || path.size() == 0) {
-		puts("Incorrect template type. Types: ['c-lang']");
+		puts("Incorrect template type. Types: ['c-lang', 'cpp-lang', 'express', 'p5']");
 		exit(3);
 		return 3;
 	}

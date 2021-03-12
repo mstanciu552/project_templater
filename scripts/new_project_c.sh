@@ -4,7 +4,7 @@
 cd $1
 
 # Check if anything already exists
-rm -rf c-project-template
+rm -rf $2
 
 # Make file structure
 mkdir $2
