@@ -7,8 +7,10 @@ cd $1
 rm -rf c-project-template
 
 # Make file structure
-mkdir c-project-template
-cd c-project-template
+mkdir $2
+cd $2
+
+# Write template to main.c
 echo "#include <stdio.h>
 #include <stdlib.h>
 
@@ -19,9 +21,10 @@ int main(int argc, char **argv) {
 }
 " > main.c
 
-echo "CC = g++
+# Write template to Makefile
+echo "CC = gcc
 FLAGS = -Wall -Wextra
-OBJ = main.cpp
+OBJ = main.c
 
 OSFLAG 				:=
 ifeq (\$(OS),Windows_NT)
@@ -66,4 +69,5 @@ clean:
 .PHONY: clean
 " > Makefile
 
+# Make the build folder
 mkdir build

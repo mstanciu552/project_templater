@@ -1,10 +1,13 @@
-
-// TODO Fix bug in global script location
+/*
+ * Add the scripts and build folders to your environment variable.
+ * Then you can use the command `temp <location> <name> <project type>`
+ */
 
 #include <iostream>
 #include <vector>
+#include <string.h>
 
-// Struct to define a type 
+// Struct to define the Template type 
 struct Template {
 	std::string type;
 	std::string path_to_script;
@@ -28,27 +31,46 @@ int main(int argc, char **argv) {
 
 	// Initialize a template vector and push an element
 	std::vector<Template*> temp;
-	push_to_template_list(&temp, "c-lang", "/c/Users/Documents/Projects/C_C++/new_terminal_cli/scripts/new_project_c.sh");
+	push_to_template_list(&temp, "c-lang", "new_project_c.sh");
 
 	// Error handling for bad arguments input
 	if (argc == 1) {
-		puts("Usage: temp <location> <language/framework>");
+		puts("Usage: temp <location> <name> <language/framework>");
 		exit(1);
 	}
 
+	// TODO Add `help` command
+	if (argc == 2) {
+		std::string help = argv[1];
+		if (help == "help") {
+			// Handle help command
+			puts("Usage: temp <location> <name> <language>");
+			puts("\nWhere:");
+			puts("\n <location> - the location on your computer where you want to make the templated project");
+			puts("\n <name> - the name of the folder containing the templated project");
+			puts("\n <language> - one of [c-lang, cpp-lang, express, p5]");	
+			puts("\nExample: temp ./Projects name-project c-lang");
+			exit(2);
+			return 2;
+		}
+	}
+
 	// Get the path to the appropriate script and end the program if no match is found
-	std::string path = match_input_to_template(temp, argv[2]);
+	std::string path = match_input_to_template(temp, argv[3]);
 	if (path == "" || path.size() == 0) {
 		puts("Incorrect template type. Types: ['c-lang']");
-		exit(2);
-		return 2;
+		exit(3);
+		return 3;
 	}
+
+	// Change specified name to c++ string
+	std::string name = argv[2];
 
 	// Change directory into specified path
 	std::string directory = argv[1];
 
 	// Format the script and run it
-	std::string script = "bash " + path + " " + directory;
+	std::string script = "bash " + path + " " + directory + " " + name;
 	system(script.c_str());
 	return 0;
 }
