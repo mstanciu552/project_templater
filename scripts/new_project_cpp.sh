@@ -63,13 +63,13 @@ endif
 all: build run
 
 build: \$(OBJ)
-	\$(CC) \$(FLAGS) \$(OBJ) -o build/temp\$(EXT) 
+	\$(CC) \$(FLAGS) \$(OBJ) -o build/main\$(EXT) 
 
-run: build/temp\$(EXT)
-	build/temp\$(EXT)
+run: build/main\$(EXT)
+	build/main\$(EXT)
 
 clean:
-	rm build/temp\$(EXT)
+	rm build/main\$(EXT)
 
 .PHONY: clean
 " > Makefile
