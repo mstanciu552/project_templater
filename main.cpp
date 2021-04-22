@@ -42,7 +42,6 @@ int main(int argc, char **argv) {
 		exit(1);
 	}
 
-	// TODO Add `help` command
 	if (argc == 2) {
 		std::string help = argv[1];
 		if (help == "help") {
