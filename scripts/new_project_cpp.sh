@@ -4,7 +4,16 @@
 cd $1
 
 # Check if anything already exists
-rm -rf $2
+if [ -d $2 ]; then 
+  read -p "File already exists. Do you want to delete and replace it?[Y/n]" permission
+  echo $permission
+  if [[ $permission == 'Y' || $permission == 'y' || -z $permission ]]; then 
+    rm -rf $2
+  else
+    echo "Stopping templater..."
+    exit
+  fi
+fi
 
 # Make file structure
 mkdir $2
